@@ -1,0 +1,14 @@
+[Unit]
+Description=Websockify port %I
+After=network.target
+
+[Service]
+EnvironmentFile=/etc/default/websockify@%i
+ExecStart=/home/lars/src/websockify-other/c/websockify ${SOURCE_PORT} localhost:${TARGET_PORT}
+
+# Restart every >2 seconds to avoid StartLimitInterval failure
+RestartSec=5
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
