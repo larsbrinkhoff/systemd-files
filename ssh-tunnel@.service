@@ -1,0 +1,14 @@
+[Unit]
+Description=SSH tunnel to %I
+After=network.target
+
+[Service]
+EnvironmentFile=/etc/default/ssh-tunnel@%i
+ExecStart=/usr/bin/ssh -NT -o ServerAliveInterval=10 -o ExitOnForwardFailure=yes -R ${REMOTE_PORT}:localhost:${LOCAL_PORT} -l ${REMOTE_USER} -i ${KEY_FILE} ${REMOTE_HOST}
+
+# Restart every >2 seconds to avoid StartLimitInterval failure
+RestartSec=5
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
