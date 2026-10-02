@@ -21,3 +21,7 @@ Create a configuration file e.g. /etc/default/websockify@12345
 SOURCE_PORT=12345
 TARGET_POST=54321
 ```
+
+### serial-getty@.service
+
+No configuration.
